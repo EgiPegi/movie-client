@@ -3,12 +3,23 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    margin-bottom: 40px;
 }
 .compare .content {
     width: 70%;
 }
 .compare .content .imgCompare {
     max-height: 300px;
+}
+.compare .content .choose {
+  display: flex;
+  flex-direction: row;
+  margin: 10px;
+}
+.compare .content .choose .slct-choose {
+  padding: 5px;
+  border-radius: 12px;
+  margin: 5px;
 }
 table {
     font-family: arial, sans-serif;

@@ -1,18 +1,33 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { useHistory } from 'react-router'
-import { Header } from '../../components'
+import { Buttom, Header } from '../../components'
 import './style.css'
 
 const Compare = () => {
     const [Movie1, setMovie1] = useState([])
     const [Movie2, setMovie2] = useState([])
-    useEffect(() => {
-        axios.get('http://localhost:3001/v1/compare?movie1=1&movie2=4')
+    const [Choose, setChoose] = useState([])
+    const [Choose1, setChoose1] = useState([])
+    const [Choose2, setChoose2] = useState([])
+    const [IsCompare, setIsCompare] = useState(false)
+    const compare = () => {
+        axios.get(`http://localhost:3001/v1/compare?movie1=${Choose1}&movie2=${Choose2}`)
             .then(result => {
                 console.log()
                 setMovie1(result.data.movie1)
                 setMovie2(result.data.movie2)
+                setIsCompare(true)
+            })
+            .catch(err => {
+                console.log(err)
+            })
+    }
+    useEffect(() => {
+        axios.get('http://localhost:3001/v1/movie')
+            .then(result => {
+                console.log()
+                setChoose(result.data)
             })
             .catch(err => {
                 console.log(err)
@@ -23,7 +38,29 @@ const Compare = () => {
         <div className='compare'>
             <Header onClick={() => history.push('/')} />
             <div className='content'>
-                <table>
+                <div className='choose'>
+                    <select className='slct-choose' onClick={(e) => { setChoose1(e.target.value) }}>
+                        <option value=''></option>
+                        {
+                            Choose.map((c) => {
+                                return <option value={c.id} key={c.id}>{c.title}</option>
+                            })
+                        }
+                    </select>
+            Compare to
+            <select className='slct-choose' onClick={(e) => { setChoose2(e.target.value) }}>
+                        <option value=''></option>
+                        {
+                            Choose.map((c) => {
+                                return <option value={c.id} key={c.id}>{c.title}</option>
+                            })
+                        }
+                    </select>
+                    <Buttom title='compare' onClick={()=> compare()} />
+                </div>
+                {
+                    IsCompare ? (
+<table>
                     <tr>
                         <th></th>
                         <th>{Movie1.title}</th>
@@ -31,8 +68,8 @@ const Compare = () => {
                     </tr>
                     <tr>
                         <th></th>
-                        <td style={{textAlign:"center"}}><img className="imgCompare" src={`http://localhost:3000/assets/images/${Movie1.image}`} alt="POST" /></td>
-                        <td style={{textAlign:"center"}}><img className="imgCompare" src={`http://localhost:3000/assets/images/${Movie2.image}`} alt="POST" /></td>
+                        <td style={{ textAlign: "center" }}><img className="imgCompare" src={`http://localhost:3000/assets/images/${Movie1.image}`} alt="POST" /></td>
+                        <td style={{ textAlign: "center" }}><img className="imgCompare" src={`http://localhost:3000/assets/images/${Movie2.image}`} alt="POST" /></td>
                     </tr>
                     <tr>
                         <th>Year</th>
@@ -66,10 +103,12 @@ const Compare = () => {
                     </tr>
                     <tr>
                         <th>Watch</th>
-                        <td>{Movie1.link}</td>
-                        <td>{Movie2.link}</td>
+                        <td><Buttom title='watch' onClick={() => window.open(Movie1.link, '_blank')} /></td>
+                        <td><Buttom title='watch' onClick={() => window.open(Movie2.link, '_blank')} /></td>
                     </tr>
                 </table>
+                    ) : null
+                }
             </div>
         </div>
     )
