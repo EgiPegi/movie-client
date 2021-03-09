@@ -26,7 +26,7 @@ const Main = () => {
                     DataAPI.map((m) => {
                         return <MovieCard
                             key={m.id}
-                            img={`http://localhost:3000/assets/images/${m.image}`}
+                            img={`https://movie-clientside.herokuapp.com/assets/images/${m.image}`}
                             genre={m.genre}
                             title={m.title}
                             desc={m.synopsis}

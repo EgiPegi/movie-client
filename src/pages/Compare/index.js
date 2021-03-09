@@ -68,8 +68,8 @@ const Compare = () => {
                     </tr>
                     <tr>
                         <th></th>
-                        <td style={{ textAlign: "center" }}><img className="imgCompare" src={`http://localhost:3000/assets/images/${Movie1.image}`} alt="POST" /></td>
-                        <td style={{ textAlign: "center" }}><img className="imgCompare" src={`http://localhost:3000/assets/images/${Movie2.image}`} alt="POST" /></td>
+                        <td style={{ textAlign: "center" }}><img className="imgCompare" src={`https://movie-clientside.herokuapp.com/assets/images/${Movie1.image}`} alt="POST" /></td>
+                        <td style={{ textAlign: "center" }}><img className="imgCompare" src={`https://movie-clientside.herokuapp.com/assets/images/${Movie2.image}`} alt="POST" /></td>
                     </tr>
                     <tr>
                         <th>Year</th>
