@@ -8,7 +8,7 @@ const Main = () => {
     let history = useHistory();
     const [DataAPI, setDataAPI] = useState([])
     useEffect(() => {
-        axios.get('http://localhost:3001/v1/movie')
+        axios.get('https://movie-serverside.herokuapp.com/v1/movie')
             .then(result => {
                 console.log(result.data)
                 const resAPI = result.data

@@ -12,7 +12,7 @@ const Compare = () => {
     const [Choose2, setChoose2] = useState([])
     const [IsCompare, setIsCompare] = useState(false)
     const compare = () => {
-        axios.get(`http://localhost:3001/v1/compare?movie1=${Choose1}&movie2=${Choose2}`)
+        axios.get(`https://movie-serverside.herokuapp.com/v1/compare?movie1=${Choose1}&movie2=${Choose2}`)
             .then(result => {
                 console.log()
                 setMovie1(result.data.movie1)
@@ -24,7 +24,7 @@ const Compare = () => {
             })
     }
     useEffect(() => {
-        axios.get('http://localhost:3001/v1/movie')
+        axios.get('https://movie-serverside.herokuapp.com/v1/movie')
             .then(result => {
                 console.log()
                 setChoose(result.data)
