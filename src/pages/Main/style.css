@@ -1,0 +1,16 @@
+.main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.main .content {
+    display: flex;
+    flex-wrap: wrap;
+    width: 60%;
+    /* background-color: aliceblue; */
+}
+.main .btn-cmp {
+    width: 200px;
+    margin: 10px;
+}
